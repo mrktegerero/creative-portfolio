@@ -20,5 +20,5 @@ export const contactData = {
 
  email: "kurtrendel@gmail.com",
  linkedIn: "https://www.linkedin.com/in/ktegerero/",
- instagram: "https://www.instagram.com/ktegerero/"
+ instagram: "https://www.instagram.com/krt.tgrr/"
 }
