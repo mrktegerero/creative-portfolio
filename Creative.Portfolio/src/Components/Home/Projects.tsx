@@ -48,7 +48,7 @@ export function Projects() {
     };
 
     return (
-        <section className="p-6 w-full flex flex-col gap-20 pb-80">
+        <section id="projects" className="p-6 w-full flex flex-col gap-20 pb-20 z-30 relative">
             <div className="grid grid-cols-2">
                 <Paragraph>Projects</Paragraph>
                 {/* <Works /> */}
@@ -60,7 +60,7 @@ export function Projects() {
                         key={project.title}
                         href={project.link}
                         target="_blank"
-                        className="flex items-center justify-between gap-4 group hover:bg-primary-light py-4 border-b border-white hover:border-primary-light has-[+a:hover]:border-black cursor-none"
+                        className="flex items-center justify-between gap-4 group hover:bg-primary-light py-4 border-b border-white hover:border-primary-light has-[+a:hover]:border-primary-light cursor-none"
                         onMouseEnter={(event) => handleMouseEnter(index, event)}
                         onMouseMove={handleMouseMove}
                         onMouseLeave={() => setActiveProjectIndex(null)}

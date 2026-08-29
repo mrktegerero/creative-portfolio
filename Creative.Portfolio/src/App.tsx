@@ -1,6 +1,8 @@
 import { About } from "./Components/Home/About"
 import { Hero } from "./Components/Home/Hero"
 import { Projects } from "./Components/Home/Projects"
+import { Contact } from "./Components/Footer/Contact"
+import { Nav } from "./Components/Nav/Nav"
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -8,9 +10,11 @@ function App() {
   return (
     <>
       <main className="bg-black flex flex-1 flex-col">
-        <Hero></Hero>
-        <About></About>
-        <Projects></Projects>
+        <Nav/>
+        <Hero/>
+        <About/>
+        <Projects/>
+        <Contact/>
       </main>
     </>
   )

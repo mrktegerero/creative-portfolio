@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-export type IconSize = 16 | 24 | 27 | 32 | 33;
+export type IconSize = 12 | 16 | 24 | 27 | 32 | 33;
 
 export type ValidTags<T = keyof React.ElementType> = Extract<
   React.ElementType,
