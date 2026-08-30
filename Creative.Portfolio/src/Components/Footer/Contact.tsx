@@ -7,7 +7,7 @@ import { Icon } from "../Reusable/Icon";
 
 export function Contact() {
     return (
-        <section className="p-6 md:p-12 w-full flex flex-col gap-20 relative z-10">
+        <section className="p-6 md:p-12 w-full flex flex-col gap-20 md:gap-30 relative z-10">
 
             <div className="grid grid-cols-2 z-10">
                 <Paragraph>Contact</Paragraph>
@@ -15,10 +15,10 @@ export function Contact() {
             </div>
 
             <div className="grid md:grid-cols-2 z-10 max-md:gap-16">
-                <p className="text-[clamp(3rem,1.5rem+12.5vw,9rem)] leading-[clamp(3rem,1.5rem+12.5vw,9rem)]" dangerouslySetInnerHTML={{ __html: contactData.heading.paragraph }}>
+                <p className="text-[clamp(3rem,1.5rem+12.5vw,9rem)] leading-[clamp(3rem,1.5rem+12.5vw,9rem)] flex items-end" dangerouslySetInnerHTML={{ __html: contactData.heading.paragraph }}>
                 </p>
 
-                <div>
+                <div className="flex flex-col justify-end">
                     <div className="flex flex-col gap-2">
                         {contactData.links.map((link, index) => (
                             <a key={index} href={link.url} className="text-xl md:text-[54px] font-medium flex gap-4 hover:text-primary-light w-fit">

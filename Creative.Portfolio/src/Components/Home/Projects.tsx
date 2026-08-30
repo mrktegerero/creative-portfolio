@@ -55,7 +55,7 @@ export function Projects() {
             </div>
 
             <div className="">
-                {projects.map((project, index) => (
+                {projects.slice(0, 5).map((project, index) => (
                     <a
                         key={project.title}
                         href={project.link}

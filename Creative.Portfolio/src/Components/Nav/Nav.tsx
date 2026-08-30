@@ -22,7 +22,7 @@ export function Nav() {
                 ))}
 
                 {navData.contact && (
-                    <a href={navData.contact.href} className="text-xs text-neutral-100 hover:text-primary-light underline uppercase font-medium">{navData.contact.label}
+                    <a href={navData.contact.href} className="text-xs text-neutral-100 hover:text-primary-light underline uppercase font-medium h-fit">{navData.contact.label}
                     </a>
                 )}
             </div>
