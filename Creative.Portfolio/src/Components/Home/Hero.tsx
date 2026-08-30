@@ -7,13 +7,6 @@ export function Hero() {
   return (
     <>
         <section className="relative md:h-screen p-6 w-full">
-            <div className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
-                <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="69.375%" cy="27.56%" r="5" fill="white"/>
-                <line x1="69.375%" y1="0" x2="69.375%" y2="100%" stroke="white" strokeOpacity="0.14"/>
-                <line x1="0" y1="27.56%" x2="100%" y2="27.56%" stroke="white" strokeOpacity="0.14"/>
-                </svg>
-            </div>
             <div className="w-full h-full relative">
                 <h1 className="z-10 relative md:absolute md:bottom-8 md:left-0 text-[clamp(3rem,1.5rem+12.5vw,9rem)] leading-[clamp(3rem,1.5rem+12.5vw,9rem)] flex flex-col">
                     <span className="flex items-center w-full justify-between"><span>{heroData.heading.copyright}</span><span>{heroData.heading.year}</span></span>

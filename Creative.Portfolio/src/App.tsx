@@ -6,6 +6,7 @@ import { ProjectList } from "./Components/Home/ProjectList"
 import { Contact } from "./Components/Footer/Contact"
 import { Nav } from "./Components/Nav/Nav"
 import { LoadingScreen } from "./Components/Loader/LoadingScreen"
+import { ScrollCrosshair } from "./Components/Reusable/ScrollCrosshair"
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -13,6 +14,7 @@ function App() {
   return (
     <>
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+      <ScrollCrosshair />
 
       <main className="bg-black flex flex-1 flex-col">
         <Nav/>

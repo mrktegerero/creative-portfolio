@@ -2,7 +2,7 @@ import { Paragraph } from "../Reusable/Paragraph";
 import { Works } from "../Home/About";
 import { contactData } from "../../data/ContactData";
 import { projectsData } from "../../data/ProjectsData";
-import { YearsExperience } from "../Home/Hero";
+// import { YearsExperience } from "../Home/Hero";  
 import { Icon } from "../Reusable/Icon";
 
 export function Contact() {
@@ -47,7 +47,7 @@ export function Contact() {
             </div>
 
             
-            <YearsExperience verticalAlignment="bottom-28" />
+            {/* <YearsExperience verticalAlignment="bottom-28" /> */}
         </section>
     );
 }
