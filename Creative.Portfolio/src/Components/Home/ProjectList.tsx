@@ -282,11 +282,13 @@ export function ProjectList() {
                         alt={project.image.alt}
                         loading="lazy"
                         draggable={false}
-                        className="h-full w-full scale-105 object-cover transition-transform duration-700 ease-out group-hover:scale-100 group-focus-visible:scale-100"
+                        className="relative z-0 h-full w-full scale-100 object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-focus-visible:scale-105"
                       />
 
-                      <figcaption className="absolute inset-x-0 bottom-0 translate-y-full bg-black/85 p-4 text-sm font-medium transition-transform duration-300 group-hover:translate-y-0 group-focus-visible:translate-y-0">
-                        {project.title}
+                      <figcaption className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-black/65 p-5 text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+                        <span className="text-base font-medium text-white sm:text-lg">
+                          {project.title}
+                        </span>
                       </figcaption>
                     </figure>
                   </a>

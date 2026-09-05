@@ -12,11 +12,11 @@ export const navData = {
                     href: "#projects",
                     target: "_self"
                 },
-                {
-                    label: "Approach",
-                    href: "#approach",
-                    target: "_self"
-                },
+                // {
+                //     label: "Approach",
+                //     href: "#approach",
+                //     target: "_self"
+                // },
                 {
                     label: "About",
                     href: "#about",
