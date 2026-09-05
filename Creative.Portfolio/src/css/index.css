@@ -3,6 +3,10 @@
 @import "./theme.css";
 
 @layer base {
+  html, body {
+    @apply scroll-smooth;
+  }
+
   html {
     @apply bg-black text-white font-display;
   }

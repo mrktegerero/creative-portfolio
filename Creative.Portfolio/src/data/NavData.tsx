@@ -1,7 +1,7 @@
 export const navData = {
     leftContent: {
         name: "Kurt Tegerero©",
-        position: "Independent Front-end Engineer"
+        position: "Independent Front-end Developer"
     },
 
     links: [

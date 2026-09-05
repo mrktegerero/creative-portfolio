@@ -10,7 +10,7 @@ export const heroData = {
 		copyright: "©",
 		year: currentYear,
 		specialty: "Front-end",
-		role: "Engineer",
+		role: "Developer",
 		location: "Angeles",
 	},
 	introduction: {
