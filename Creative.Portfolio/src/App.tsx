@@ -54,8 +54,8 @@ function App() {
         <Nav />
         <Hero />
         <About />
-        <ProjectList />
-        <Projects />
+        {/* <ProjectList />
+        <Projects /> */}
         <Contact />
       </main>
     </>
