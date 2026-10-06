@@ -13,8 +13,8 @@ export const contactData = {
          url: "#projects"
      },
      {
-         label: "Contact",
-         url: "#contact"
+         label: "Experience",
+         url: "#experience"
      }
  ],
 

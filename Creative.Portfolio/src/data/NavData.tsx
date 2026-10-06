@@ -8,20 +8,20 @@ export const navData = {
         {
             items: [
                 {
+                    label: "About",
+                    href: "#about",
+                    target: "_self"
+                },
+                {
                     label: "Projects",
                     href: "#projects",
                     target: "_self"
                 },
-                // {
-                //     label: "Approach",
-                //     href: "#approach",
-                //     target: "_self"
-                // },
                 {
-                    label: "About",
-                    href: "#about",
+                    label: "Experience",
+                    href: "#experience",
                     target: "_self"
-                }
+                },
             ]
         },
         {
