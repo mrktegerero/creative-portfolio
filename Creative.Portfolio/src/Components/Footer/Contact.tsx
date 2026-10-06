@@ -18,7 +18,7 @@ export function Contact() {
 
       <div className="grid lg:grid-cols-2 z-10 max-lg:gap-16">
         <p
-          className="text-[clamp(3rem,1.5rem+12.5vw,9rem)] leading-[clamp(3rem,1.5rem+12.5vw,9rem)] flex flex-col justify-end items-start"
+          className="text-[clamp(3rem,1.5rem+12.5vw,9rem)] leading-[clamp(3rem,1.5rem+12.5vw,9rem)] flex flex-col justify-end items-start gap-1"
           dangerouslySetInnerHTML={{ __html: contactData.heading.paragraph }}
         ></p>
 
