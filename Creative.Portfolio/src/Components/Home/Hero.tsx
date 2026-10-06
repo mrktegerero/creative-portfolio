@@ -1,20 +1,42 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Icon } from "../Reusable/Icon";
 import { Paragraph } from "../Reusable/Paragraph";
 import { heroData } from "../../data/HeroData";
 import { clsx } from "clsx";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(useGSAP);
 
 export function Hero({ isReady }: { isReady: boolean }) {
+  const backgroundNumberRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const backgroundNumber = backgroundNumberRef.current;
+
+    if (!backgroundNumber) return;
+
+    const motion = gsap.matchMedia();
+
+    motion.add("(prefers-reduced-motion: no-preference)", () =>
+      gsap.to(backgroundNumber, {
+        scale: 1.04,
+        duration: 2.4,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+        transformOrigin: "center",
+      }),
+    );
+
+    return () => motion.revert();
+  }, []);
+
   return (
     <>
-      <section className="relative md:h-screen p-6 w-full">
+      <section className="relative lg:h-screen p-6 w-full">
         <div className="w-full h-full relative">
-          <h1 className="z-10 relative md:absolute md:bottom-8 md:left-0 text-[clamp(3rem,1.5rem+12.5vw,9rem)] leading-[clamp(3rem,1.5rem+12.5vw,9rem)] flex flex-col">
+          <h1 className="z-10 relative lg:absolute lg:bottom-8 lg:left-0 text-[clamp(3rem,1.5rem+12.5vw,9rem)] leading-[clamp(3rem,1.5rem+12.5vw,9rem)] flex flex-col">
             <span className="flex items-center w-full justify-between">
               <span>{heroData.heading.copyright}</span>
               <span>{heroData.heading.year}</span>
@@ -32,8 +54,13 @@ export function Hero({ isReady }: { isReady: boolean }) {
 
           <Image isReady={isReady} />
 
-          <div className="absolute top-2/4 -translate-y-2/4 left-2/4 -translate-x-2/4 text-[500px] md:text-[1000px] font-medium text-primary blur-xs">
-            {heroData.backgroundNumber}
+          <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
+            <div
+              ref={backgroundNumberRef}
+              className="text-[500px] md:text-[1000px] font-medium text-primary blur-xs"
+            >
+              {heroData.backgroundNumber}
+            </div>
           </div>
         </div>
       </section>
@@ -70,7 +97,7 @@ function Image({ isReady }: { isReady: boolean }) {
           .timeline({
             scrollTrigger: {
               trigger: revealRef.current,
-              start: "top 45%",
+              start: "top 80%",
               end: "top 10%",
               scrub: 0.35,
             },
@@ -105,7 +132,7 @@ function Image({ isReady }: { isReady: boolean }) {
   );
 
   return (
-    <div className="max-md:mt-10 z-10 relative max-md:flex max-md:justify-end max-md:w-full md:absolute md:bottom-8 md:right-0">
+    <div className="max-lg:mt-10 z-10 relative max-lg:flex max-lg:justify-end max-lg:w-full lg:absolute lg:bottom-8 lg:right-0">
       <div className="flex flex-col gap-4">
         <div className="flex justify-between gap-4 pl-4">
           <div className="flex flex-col items-center gap-1">
@@ -147,7 +174,7 @@ function Image({ isReady }: { isReady: boolean }) {
 export function LeftText({ notAbsolute = false }: { notAbsolute?: boolean }) {
   return (
     <div
-      className={`z-10 relative ${!notAbsolute ? "md:absolute md:bottom-8 md:left-0" : ""} max-w-[clamp(20rem,50%,21rem)] flex flex-col gap-4 md:gap-6`}
+      className={`z-10 relative ${!notAbsolute ? "lg:absolute lg:bottom-8 lg:left-0" : ""} max-w-[clamp(20rem,50%,21rem)] flex flex-col gap-4 md:gap-6`}
     >
       <Icon name={heroData.introduction.icon} size={24} testid="hero-icon" />
       <Paragraph>{heroData.introduction.text}</Paragraph>
@@ -163,7 +190,7 @@ export function YearsExperience({
   return (
     <div
       className={clsx(
-        "absolute left-2/4 -translate-x-2/4 text-[500px] md:text-[1000px] md:leading-[100%] font-medium text-primary blur-xs z-0",
+        "absolute left-2/4 -translate-x-2/4 text-[500px] lg:text-[1000px] lg:leading-[100%] font-medium text-primary blur-xs z-0",
         // size === 16 ? "font-normal" : "font-light", // size 16 font weight is not working as normal from before
         verticalAlignment ? `${verticalAlignment}` : "top-2/4 -translate-y-2/4",
       )}

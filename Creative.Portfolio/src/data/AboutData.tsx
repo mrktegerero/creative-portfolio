@@ -1,6 +1,6 @@
 export const aboutData = {
 	heading: {
-        paragraph: "I'm a <span class='text-primary-light'>front-end engineer</span> based in the Philippines with a passion for creating seamless digital experiences. Over the years, I've worked on responsive websites, web applications, and client projects across different industries."
+        paragraph: "I'm a <span class='text-primary-light'>front-end developer</span> based in the Philippines with a passion for creating seamless digital experiences. Over the years, I've worked on responsive websites, web applications, and client projects across different industries."
     },
 
     skills: [

@@ -3,9 +3,12 @@ import { experienceData } from "../../data/ExperienceData";
 
 export function Experience() {
   return (
-    <section id="experience" className="w-full px-6 py-20 md:px-12 md:py-32">
-      <div className="grid gap-12 md:grid-cols-2 md:gap-0">
-        <div className="flex flex-col gap-5">
+    <section
+      id="experience"
+      className="relative w-full px-6 py-20 md:px-12 md:py-32"
+    >
+      <div className="grid gap-12 lg:grid-cols-2 lg:gap-0">
+        <div className="flex h-fit flex-col gap-5 lg:sticky lg:top-1/2 lg:-translate-y-1/2 lg:self-start">
           <Paragraph>Experience</Paragraph>
 
           <Paragraph className="max-w-md text-neutral-100">
