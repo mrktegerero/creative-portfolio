@@ -57,9 +57,15 @@ export function Hero({ isReady }: { isReady: boolean }) {
           <div className="absolute max-lg:top-2/7 top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
             <div
               ref={backgroundNumberRef}
-              className="text-[500px] md:text-[1000px] font-medium text-primary blur-xs"
+              className="relative text-[500px] md:text-[1000px] font-medium text-primary"
             >
               {heroData.backgroundNumber}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 blur-md [clip-path:polygon(0_-1000%,200%_100%,0_100%)]"
+              >
+                {heroData.backgroundNumber}
+              </span>
             </div>
           </div>
         </div>
