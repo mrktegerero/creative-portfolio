@@ -23,7 +23,7 @@ export function Experience() {
                 key={`${role.company}-${role.period}`}
                 className="grid gap-5 border-b last:border-b-0 border-white/25 py-8 md:grid-cols-[9rem_minmax(0,1fr)] md:gap-8"
               >
-                <Paragraph className="text-neutral-100">
+                <Paragraph className="text-neutral-100 mt-1.5">
                   {role.period}
                 </Paragraph>
 
