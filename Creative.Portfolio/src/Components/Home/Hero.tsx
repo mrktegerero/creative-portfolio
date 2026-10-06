@@ -54,7 +54,7 @@ export function Hero({ isReady }: { isReady: boolean }) {
 
           <Image isReady={isReady} />
 
-          <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
+          <div className="absolute top-2/7 left-2/4 -translate-x-2/4 -translate-y-2/4">
             <div
               ref={backgroundNumberRef}
               className="text-[500px] md:text-[1000px] font-medium text-primary blur-xs"
@@ -132,7 +132,7 @@ function Image({ isReady }: { isReady: boolean }) {
   );
 
   return (
-    <div className="max-lg:mt-10 z-10 relative max-lg:flex max-lg:justify-end max-lg:w-full lg:absolute lg:bottom-8 lg:right-0">
+    <div className="max-lg:mt-30 z-10 relative max-lg:flex max-lg:justify-end max-lg:w-full lg:absolute lg:bottom-8 lg:right-0">
       <div className="flex flex-col gap-4">
         <div className="flex justify-between gap-4 pl-4">
           <div className="flex flex-col items-center gap-1">
