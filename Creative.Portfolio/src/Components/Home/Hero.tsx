@@ -54,7 +54,7 @@ export function Hero({ isReady }: { isReady: boolean }) {
 
           <Image isReady={isReady} />
 
-          <div className="absolute top-2/7 left-2/4 -translate-x-2/4 -translate-y-2/4">
+          <div className="absolute max-lg:top-2/7 top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
             <div
               ref={backgroundNumberRef}
               className="text-[500px] md:text-[1000px] font-medium text-primary blur-xs"
