@@ -5,7 +5,6 @@ import { About } from "./Components/Home/About";
 import { Experience } from "./Components/Home/Experience";
 import { Hero } from "./Components/Home/Hero";
 import { Projects } from "./Components/Home/Projects";
-import { ProjectList } from "./Components/Home/ProjectList";
 import { Contact } from "./Components/Footer/Contact";
 import { Nav } from "./Components/Nav/Nav";
 import { LoadingScreen } from "./Components/Loader/LoadingScreen";
