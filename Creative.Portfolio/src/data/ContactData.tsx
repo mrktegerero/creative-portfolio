@@ -1,6 +1,6 @@
 export const contactData = {
  heading: {
-    paragraph: "<span>Let’s get</span> <br/> <span>sh<span class='text-primary-light'>*</span>t done</span>"
+    paragraph: "<span>Let’s get</span> <span>sh<span class='text-primary-light'>*</span>t done</span>"
  },
 
  links: [

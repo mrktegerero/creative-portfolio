@@ -35,7 +35,7 @@ export function Experience() {
                         href={role.companyUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group relative inline-block after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100 focus-visible:after:scale-x-100"
+                        className="group relative inline-block max-lg:after:scale-x-100 after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100 focus-visible:after:scale-x-100"
                       >
                         @{role.company}
                       </a>
