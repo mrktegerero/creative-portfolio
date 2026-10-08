@@ -1,4 +1,4 @@
-import { useRef, useState, type MouseEvent, type TouchEvent } from "react";
+import { useRef, useState, type MouseEvent } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { Paragraph } from "../Reusable/Paragraph";
@@ -48,18 +48,6 @@ export function Projects() {
     positionPreview(event.clientX, event.clientY);
   };
 
-  const handleTouchStart = (
-    index: number,
-    event: TouchEvent<HTMLAnchorElement>,
-  ) => {
-    const touch = event.touches[0];
-
-    if (!touch) return;
-
-    pointerPositionRef.current = { x: touch.clientX, y: touch.clientY };
-    setActiveProjectIndex(index);
-  };
-
   const setPreviewElement = (element: HTMLImageElement | null) => {
     previewRef.current = element;
 
@@ -96,16 +84,13 @@ export function Projects() {
               key={project.title}
               href={project.link}
               target="_blank"
-              className={`flex items-center justify-between gap-4 group hover:bg-primary-light py-4 border-b border-white hover:border-primary-light has-[+a:hover]:border-primary-light cursor-none ${isActive ? "bg-primary-light border-primary-light" : ""}`}
+              className={`flex items-center justify-between gap-4 group hover:bg-primary-light active:bg-primary-light py-4 border-b border-white hover:border-primary-light active:border-primary-light has-[+a:hover]:border-primary-light cursor-none ${isActive ? "bg-primary-light border-primary-light" : ""}`}
               onMouseEnter={(event) => handleMouseEnter(index, event)}
               onMouseMove={handleMouseMove}
               onMouseLeave={() => setActiveProjectIndex(null)}
-              onTouchStart={(event) => handleTouchStart(index, event)}
-              onTouchEnd={() => setActiveProjectIndex(null)}
-              onTouchCancel={() => setActiveProjectIndex(null)}
             >
               <p
-                className={`flex items-center gap-8 md:gap-16 group-hover:text-black group-hover:translate-x-6 transition-transform ${isActive ? "text-black translate-x-6" : ""}`}
+                className={`flex items-center gap-8 md:gap-16 group-hover:text-black group-hover:translate-x-6 group-active:text-black transition-transform ${isActive ? "text-black translate-x-6" : ""}`}
               >
                 <span className="text-xl font-medium">
                   ({String(index + 1).padStart(2, "0")})
@@ -114,13 +99,13 @@ export function Projects() {
               </p>
 
               <Icon
-                className={`max-md:hidden text-white transition-colors group-hover:text-black pr-4 md:pr-8 ${isActive ? "text-black" : ""}`}
+                className={`max-md:hidden text-white transition-colors group-hover:text-black group-active:text-black pr-4 md:pr-8 ${isActive ? "text-black" : ""}`}
                 name="link"
                 size={33}
                 testid="hero-icon"
               />
               <Icon
-                className={`md:hidden text-white transition-colors group-hover:text-black pr-4 md:pr-8 ${isActive ? "text-black" : ""}`}
+                className={`md:hidden text-white transition-colors group-hover:text-black group-active:text-black pr-4 md:pr-8 ${isActive ? "text-black" : ""}`}
                 name="link"
                 size={16}
                 testid="hero-icon"
