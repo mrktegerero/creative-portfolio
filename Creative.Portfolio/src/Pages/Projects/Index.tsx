@@ -20,7 +20,7 @@ export function ProjectIndex() {
           <header className="flex items-start justify-between pb-10 pt-24 md:pt-36">
             <div>
               <Paragraph className="text-primary">
-                Selected work / 2020-{new Date().getFullYear()}
+                Selected work / 2021-{new Date().getFullYear()}
               </Paragraph>
               <h1 className="mt-3 text-[clamp(3rem,2rem+6vw,7rem)] leading-none">
                 All Projects
