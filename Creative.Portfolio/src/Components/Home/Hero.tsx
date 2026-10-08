@@ -1,12 +1,13 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Icon } from "../Reusable/Icon";
 import { Paragraph } from "../Reusable/Paragraph";
 import { heroData } from "../../data/HeroData";
 import { clsx } from "clsx";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export function Hero({ isReady }: { isReady: boolean }) {
   const backgroundNumberRef = useRef<HTMLDivElement>(null);
@@ -76,13 +77,13 @@ export function Hero({ isReady }: { isReady: boolean }) {
 
 function Image({ isReady }: { isReady: boolean }) {
   const imageRef = useRef<HTMLImageElement>(null);
+  const imageFrameRef = useRef<HTMLDivElement>(null);
   const revealRef = useRef<HTMLDivElement>(null);
-
-  console.log(isReady);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   useGSAP(
     () => {
-      if (!isReady) return;
+      if (!isReady || !isImageLoaded) return;
 
       const image = imageRef.current;
       const blocks = revealRef.current?.querySelectorAll("[data-image-block]");
@@ -97,15 +98,75 @@ function Image({ isReady }: { isReady: boolean }) {
           scale: 1,
           transformOrigin: "center",
         });
-        gsap.set(image, { scale: 1.06 });
+        gsap.set(image, { autoAlpha: 0, scale: 1.06 });
 
-        return gsap
+        const loadingPixels = Array.from(blocks).filter((_, index) =>
+          [
+            1, 4, 9, 12, 17, 20, 25, 28, 33, 36, 41, 44, 49, 52, 57, 60,
+            65, 68, 73, 76,
+          ].includes(index),
+        );
+        const followUpPixels = Array.from(blocks).filter((_, index) =>
+          [6, 14, 19, 23, 31, 38, 42, 47, 54, 59, 63, 71, 78].includes(index),
+        );
+
+        const loadTimeline = gsap
+          .timeline({ delay: 0 })
+          .to(image, {
+            autoAlpha: 1,
+            duration: 0.45,
+            ease: "power2.out",
+          })
+          .to(loadingPixels, {
+            autoAlpha: 0,
+            scale: 0.15,
+            duration: 0.35,
+            stagger: {
+              each: 0.035,
+              from: "random",
+            },
+            ease: "power2.out",
+          }, "<")
+          .to(
+            followUpPixels,
+            {
+              autoAlpha: 0,
+              scale: 0.15,
+              duration: 0.3,
+              stagger: {
+                each: 0.03,
+                from: "random",
+              },
+              ease: "power2.out",
+            },
+            "-=0.15",
+          );
+
+        const imageFrame = imageFrameRef.current;
+        let activePixelIndex = -1;
+        let activeCursorPixels: Element[] = [];
+
+        const showCursorPixels = () => {
+          if (!activeCursorPixels.length) return;
+
+          gsap.killTweensOf(activeCursorPixels);
+          gsap.to(activeCursorPixels, {
+            autoAlpha: 0.75,
+            scale: 1,
+            duration: 0.15,
+            stagger: { each: 0.015, from: "center" },
+            ease: "power2.out",
+          });
+        };
+
+        const scrollTimeline = gsap
           .timeline({
             scrollTrigger: {
               trigger: revealRef.current,
               start: "top 80%",
               end: "top 10%",
               scrub: 0.35,
+              onUpdate: showCursorPixels,
             },
           })
           .to(blocks, {
@@ -125,6 +186,55 @@ function Image({ isReady }: { isReady: boolean }) {
             },
             0,
           );
+
+        const animateCursorPixels = (event: PointerEvent) => {
+          if (!imageFrame) return;
+
+          const bounds = imageFrame.getBoundingClientRect();
+          const column = Math.min(7, Math.floor(((event.clientX - bounds.left) / bounds.width) * 8));
+          const row = Math.min(9, Math.floor(((event.clientY - bounds.top) / bounds.height) * 10));
+          const pixelIndex = row * 8 + column;
+
+          if (pixelIndex === activePixelIndex) return;
+
+          activePixelIndex = pixelIndex;
+          const cursorPixels = [
+            pixelIndex,
+            pixelIndex - 1,
+            pixelIndex + 1,
+            pixelIndex - 8,
+            pixelIndex + 8,
+          ].filter((index) => index >= 0 && index < blocks.length)
+            .map((index) => blocks[index]);
+
+          activeCursorPixels = cursorPixels;
+
+          gsap.killTweensOf(cursorPixels);
+          gsap
+            .timeline()
+            .to(cursorPixels, {
+              autoAlpha: 0.75,
+              scale: 1,
+              duration: 0.15,
+              stagger: { each: 0.015, from: "center" },
+              ease: "power2.out",
+            })
+            .to(cursorPixels, {
+              autoAlpha: 0,
+              scale: 0.15,
+              duration: 0.3,
+              stagger: { each: 0.025, from: "center" },
+              ease: "power2.out",
+            });
+        };
+
+        imageFrame?.addEventListener("pointermove", animateCursorPixels);
+
+        return () => {
+          loadTimeline.kill();
+          scrollTimeline.kill();
+          imageFrame?.removeEventListener("pointermove", animateCursorPixels);
+        };
       });
 
       motion.add("(prefers-reduced-motion: reduce)", () => {
@@ -134,7 +244,7 @@ function Image({ isReady }: { isReady: boolean }) {
 
       return () => motion.revert();
     },
-    { dependencies: [isReady], revertOnUpdate: true },
+    { dependencies: [isReady, isImageLoaded], revertOnUpdate: true },
   );
 
   return (
@@ -156,12 +266,16 @@ function Image({ isReady }: { isReady: boolean }) {
             {heroData.experience.summary}
           </Paragraph>
         </div>
-        <div className="relative aspect-66/79 w-full max-w-82.5 overflow-hidden">
+        <div
+          ref={imageFrameRef}
+          className="relative aspect-66/79 w-full max-w-82.5 overflow-hidden"
+        >
           <img
             ref={imageRef}
             src={heroData.image.src}
             alt={heroData.image.alt}
             className="h-full w-full object-cover will-change-transform"
+            onLoad={() => setIsImageLoaded(true)}
           />
           <div
             ref={revealRef}

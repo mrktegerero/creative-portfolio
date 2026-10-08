@@ -10,15 +10,15 @@ export const aboutData = {
         },
         {
             title: "Styling",
-            items: ["Tailwind CSS", "SCSS", "CSS Modules", "Bootstrap", "GSAP"]
+            items: ["Tailwind CSS", "SCSS", "CSS Modules", "SASS", "Bootstrap", "GSAP", "Framer Motion"]
         },
         {
             title: "Frameworks",
-            items: ["React", "Next.js", "Svelte", "Three Js"]
+            items: ["React", "Next.js", "Svelte", "Gatsby.js", "Three Js",]
         },
         {
             title: "Tools & Platforms",
-            items: ["Git", "GitHub", "Vite", "Umbraco", "Docker", "Figma"]
+            items: ["Git", "GitHub", "Vite", "Webpack", "Umbraco", "Docker", "Figma", "Storybook"]
         }
     ]
 }

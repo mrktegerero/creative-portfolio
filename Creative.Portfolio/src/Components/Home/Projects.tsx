@@ -1,12 +1,16 @@
 import { useRef, useState, type MouseEvent } from "react";
+import { createPortal } from "react-dom";
+import { Link } from "react-router-dom";
 import { Paragraph } from "../Reusable/Paragraph";
-import { projectsData } from "../../data/ProjectsData";
 import { Icon } from "../Reusable/Icon";
+import { projectsData } from "../../data/ProjectsData";
 
 // import { Works } from "./About";
 
 export function Projects() {
-  const projects = [...projectsData].reverse();
+  const projects = [...projectsData]
+    .reverse()
+    .filter((project) => !project.notInProjectHome);
   const previewRef = useRef<HTMLImageElement>(null);
   const pointerPositionRef = useRef({ x: 0, y: 0 });
   const [activeProjectIndex, setActiveProjectIndex] = useState<number | null>(
@@ -60,9 +64,15 @@ export function Projects() {
       id="projects"
       className="p-6 w-full flex flex-col gap-20 pb-20 z-30 relative"
     >
-      <div className="grid grid-cols-2">
+      <div className="flex flex-col gap-4">
         <Paragraph>Projects</Paragraph>
-        {/* <Works /> */}
+        <Link
+          to="/projects"
+          className="text-base md:text-lg text-primary-light font-medium group relative max-lg:after:scale-x-100 after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100 focus-visible:after:scale-x-100 w-fit flex items-center gap-3"
+        >
+          View all projects
+          <Icon name="link" size={12} />
+        </Link>
       </div>
 
       <div className="">
@@ -99,15 +109,24 @@ export function Projects() {
         ))}
       </div>
 
-      {activeProjectIndex !== null && (
-        <img
-          ref={setPreviewElement}
-          src={projects[activeProjectIndex].image.src}
-          alt=""
-          aria-hidden="true"
-          className="fixed top-0 left-0 z-20 pointer-events-none aspect-66/79 h-auto w-full max-w-[clamp(14rem,32vw,26rem)] object-cover select-none will-change-transform"
-        />
-      )}
+      {activeProjectIndex !== null &&
+        projects[activeProjectIndex].image &&
+        createPortal(
+          <img
+            ref={setPreviewElement}
+            src={projects[activeProjectIndex].image.src}
+            alt=""
+            aria-hidden="true"
+            onLoad={() =>
+              positionPreview(
+                pointerPositionRef.current.x,
+                pointerPositionRef.current.y,
+              )
+            }
+            className="fixed top-0 left-0 z-9999 h-[clamp(17rem,38vw,31rem)] w-[clamp(14rem,32vw,26rem)] pointer-events-none object-cover select-none will-change-transform"
+          />,
+          document.body,
+        )}
     </section>
   );
 }

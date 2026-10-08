@@ -6,15 +6,15 @@ export const contactData = {
  links: [
      {
          label: "About",
-         url: "#about"
+         url: "about"
      },
      {
          label: "Projects",
-         url: "#projects"
+         url: "projects"
      },
      {
          label: "Experience",
-         url: "#experience"
+         url: "experience"
      }
  ],
 

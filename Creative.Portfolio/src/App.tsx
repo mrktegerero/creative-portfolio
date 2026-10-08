@@ -1,64 +1,58 @@
-import { useEffect, useState } from "react";
-import Lenis from "lenis";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { About } from "./Components/Home/About";
-import { Experience } from "./Components/Home/Experience";
-import { Hero } from "./Components/Home/Hero";
-import { Projects } from "./Components/Home/Projects";
-import { Contact } from "./Components/Footer/Contact";
-import { Nav } from "./Components/Nav/Nav";
+import { useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { LoadingScreen } from "./Components/Loader/LoadingScreen";
-import { ScrollCrosshair } from "./Components/Reusable/ScrollCrosshair";
+import { HomePage } from "./Pages/Home/Index";
+import { ProjectIndex } from "./Pages/Projects/Index";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const pageRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
-  useEffect(() => {
-    const lenis = new Lenis({
-      autoRaf: true,
-      duration: 1.2,
-      smoothWheel: true,
-    });
+  useGSAP(
+    () => {
+      const page = pageRef.current;
 
-    lenis.on("scroll", ScrollTrigger.update);
+      if (!page) return;
 
-    const handleAnchorClick = (event: MouseEvent) => {
-      const link = (event.target as Element).closest<HTMLAnchorElement>(
-        'a[href^="#"]',
-      );
+      gsap.set(page, { autoAlpha: 0, y: 12 });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
 
-      if (!link) return;
+      let animationFrame: number | undefined;
+      const revealTimeout = window.setTimeout(() => {
+        animationFrame = requestAnimationFrame(() => {
+          gsap.to(page, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.35,
+            ease: "power2.out",
+          });
+        });
+      }, 150);
 
-      const targetId = link.hash.slice(1);
-      const target = document.getElementById(targetId);
+      return () => {
+        window.clearTimeout(revealTimeout);
 
-      if (!target) return;
-
-      event.preventDefault();
-      lenis.scrollTo(target);
-    };
-
-    document.addEventListener("click", handleAnchorClick);
-    return () => {
-      document.removeEventListener("click", handleAnchorClick);
-      lenis.destroy();
-    };
-  }, []);
+        if (animationFrame !== undefined) {
+          cancelAnimationFrame(animationFrame);
+        }
+      };
+    },
+    { dependencies: [location.pathname], revertOnUpdate: true },
+  );
 
   return (
     <>
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
-      <ScrollCrosshair />
-
-      <main className="bg-black flex flex-1 flex-col">
-        <Nav />
-        <Hero isReady={!isLoading} />
-        <About />
-        {/* <ProjectList /> */}
-        <Projects />
-        <Experience />
-        <Contact />
-      </main>
+      <div ref={pageRef}>
+        <Routes>
+          <Route path="/" element={<HomePage isReady={!isLoading} />} />
+          <Route path="/projects" element={<ProjectIndex />} />
+        </Routes>
+      </div>
     </>
   );
 }

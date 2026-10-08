@@ -9,7 +9,7 @@ export const experienceData = {
       summary:
         "Developed and maintained code for in-house and client websites, tested site compatibility across multiple browsers and devices, uncovering and debugging issues and addressing inconsistencies and debug errors, troubleshoot issues, and perform routine performance optimizations.",
       technologies:
-        "Svelte, SvelteKit, Shopify API, .NET, C#, React, Next.js, Lit, TypeScript, Umbraco, Bootstrap and Tailwind.",
+        "React, Next.js, Lit, TypeScript, Svelte, SvelteKit, Shopify API, .NET, C#, Umbraco, Bootstrap and Tailwind.",
     },
     {
       period: "2021 - 2022",

@@ -4,6 +4,7 @@ import { contactData } from "../../data/ContactData";
 import { projectsData } from "../../data/ProjectsData";
 // import { YearsExperience } from "../Home/Hero";
 import { Icon } from "../Reusable/Icon";
+import { Link } from "react-router-dom";
 
 export function Contact() {
   return (
@@ -25,10 +26,11 @@ export function Contact() {
         <div className="flex flex-col justify-end">
           <div className="flex flex-col gap-2">
             {contactData.links.map((link, index) => (
-              <a
+              <Link
                 key={index}
-                href={link.url}
-                className="text-xl md:text-[54px] font-medium flex gap-4 hover:text-primary-light w-fit"
+                to="/"
+                state={{ sectionId: link.url }}
+                className="text-xl md:text-[54px] font-medium flex gap-4 hover:text-primary-light w-fit transition-colors"
               >
                 {link.label}
                 {/* for Projects section */}
@@ -37,14 +39,14 @@ export function Contact() {
                     ({projectsData.length})
                   </span>
                 )}
-              </a>
+              </Link>
             ))}
           </div>
           <div className="border-t border-white grid grid-cols-2 mt-4">
             <div className="flex flex-col gap-2 pt-6 pr-1 md:pr-4 border-r border-white">
               <p className="text-xs font-normal uppercase">Contact</p>
               <a
-                className="text-sm md:text-xl font-medium hover:text-primary-light group w-fit flex items-center"
+                className="text-sm md:text-xl font-medium hover:text-primary-light transition-colors group w-fit flex items-center"
                 href={`mailto:${contactData.email}`}
               >
                 {contactData.email}{" "}
@@ -61,14 +63,14 @@ export function Contact() {
               <p className="text-xs font-normal uppercase">Follow Me</p>
               <div className="grid grid-cols-2">
                 <a
-                  className="text-sm md:text-xl font-medium hover:text-primary-light w-fit"
+                  className="text-sm md:text-xl font-medium hover:text-primary-light w-fit transition-colors"
                   target="_blank"
                   href={contactData.linkedIn}
                 >
                   linkedIn
                 </a>
                 <a
-                  className="text-sm md:text-xl font-medium hover:text-primary-light w-fit"
+                  className="text-sm md:text-xl font-medium hover:text-primary-light w-fit transition-colors"
                   target="_blank"
                   href={contactData.instagram}
                 >

@@ -9,17 +9,17 @@ export const navData = {
             items: [
                 {
                     label: "About",
-                    href: "#about",
+                    href: "about",
                     target: "_self"
                 },
                 {
                     label: "Projects",
-                    href: "#projects",
+                    href: "projects",
                     target: "_self"
                 },
                 {
                     label: "Experience",
-                    href: "#experience",
+                    href: "experience",
                     target: "_self"
                 },
             ]
@@ -42,6 +42,6 @@ export const navData = {
 
     contact: {
         label: "Contact",
-        href: "#contact"
+        href: "contact"
     }
 }
