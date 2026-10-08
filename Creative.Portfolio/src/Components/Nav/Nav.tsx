@@ -28,7 +28,7 @@ export function Nav() {
                   key={item.href}
                   to="/"
                   state={{ sectionId }}
-                  className="group"
+                  className="group w-fit inline-block"
                 >
                   <Paragraph className="group-hover:text-primary-light transition-colors">
                     {item.label}
