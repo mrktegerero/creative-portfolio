@@ -49,7 +49,8 @@ export function HomePage({ isReady }: { isReady: boolean }) {
   }, []);
 
   useEffect(() => {
-    const sectionId = (location.state as { sectionId?: string } | null)?.sectionId;
+    const sectionId = (location.state as { sectionId?: string } | null)
+      ?.sectionId;
 
     if (!sectionId) return;
 

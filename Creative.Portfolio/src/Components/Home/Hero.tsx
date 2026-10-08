@@ -102,8 +102,8 @@ function Image({ isReady }: { isReady: boolean }) {
 
         const loadingPixels = Array.from(blocks).filter((_, index) =>
           [
-            1, 4, 9, 12, 17, 20, 25, 28, 33, 36, 41, 44, 49, 52, 57, 60,
-            65, 68, 73, 76,
+            1, 4, 9, 12, 17, 20, 25, 28, 33, 36, 41, 44, 49, 52, 57, 60, 65, 68,
+            73, 76,
           ].includes(index),
         );
         const followUpPixels = Array.from(blocks).filter((_, index) =>
@@ -117,16 +117,20 @@ function Image({ isReady }: { isReady: boolean }) {
             duration: 0.45,
             ease: "power2.out",
           })
-          .to(loadingPixels, {
-            autoAlpha: 0,
-            scale: 0.15,
-            duration: 0.35,
-            stagger: {
-              each: 0.035,
-              from: "random",
+          .to(
+            loadingPixels,
+            {
+              autoAlpha: 0,
+              scale: 0.15,
+              duration: 0.35,
+              stagger: {
+                each: 0.035,
+                from: "random",
+              },
+              ease: "power2.out",
             },
-            ease: "power2.out",
-          }, "<")
+            "<",
+          )
           .to(
             followUpPixels,
             {
@@ -191,8 +195,14 @@ function Image({ isReady }: { isReady: boolean }) {
           if (!imageFrame) return;
 
           const bounds = imageFrame.getBoundingClientRect();
-          const column = Math.min(7, Math.floor(((event.clientX - bounds.left) / bounds.width) * 8));
-          const row = Math.min(9, Math.floor(((event.clientY - bounds.top) / bounds.height) * 10));
+          const column = Math.min(
+            7,
+            Math.floor(((event.clientX - bounds.left) / bounds.width) * 8),
+          );
+          const row = Math.min(
+            9,
+            Math.floor(((event.clientY - bounds.top) / bounds.height) * 10),
+          );
           const pixelIndex = row * 8 + column;
 
           if (pixelIndex === activePixelIndex) return;
@@ -204,7 +214,8 @@ function Image({ isReady }: { isReady: boolean }) {
             pixelIndex + 1,
             pixelIndex - 8,
             pixelIndex + 8,
-          ].filter((index) => index >= 0 && index < blocks.length)
+          ]
+            .filter((index) => index >= 0 && index < blocks.length)
             .map((index) => blocks[index]);
 
           activeCursorPixels = cursorPixels;
