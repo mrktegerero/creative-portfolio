@@ -106,7 +106,7 @@ export const projectsData: Project[] = [
   },
   {
     title: "Royal Life Saving Society - Australia MVP",
-    link: "https://app-web-ka63eko4wrpea.azurewebsites.net/",
+    // link: "https://app-web-ka63eko4wrpea.azurewebsites.net/",
     year: "2022",
     madeAt: "Soda Digital",
     builtWith: [".NET", "C#", "Bootstrap"],
@@ -120,7 +120,7 @@ export const projectsData: Project[] = [
   },
   {
     title: "Villages Mercer",
-    link: "https://mercer-web.azurewebsites.net/",
+    // link: "https://mercer-web.azurewebsites.net/",
     year: "2022",
     madeAt: "Soda Digital",
     builtWith: ["ASP.NET", "C#", "Bootstrap", "Umbraco"],
@@ -147,14 +147,14 @@ export const projectsData: Project[] = [
   },
   {
     title: "Plotly Marketing",
-    link: "https://plotly.com/",
+    // link: "https://plotly.com/",
     year: "2021",
     madeAt: "Fullstack HQ",
     builtWith: ["Next.js", "Chakra UI", "TypeScript", "Prismic", "Vercel"],
   },
   {
     title: "Anduin Transaction",
-    link: "https://www.anduintransact.com/",
+    // link: "https://www.anduintransact.com/",
     year: "2021",
     madeAt: "Fullstack HQ",
     builtWith: ["Gatsby", "Sass", "Prismic", "Netlify"],

@@ -8,7 +8,6 @@ import { Hero } from "../../Components/Home/Hero";
 import { Projects } from "../../Components/Home/Projects";
 import { Contact } from "../../Components/Footer/Contact";
 import { Nav } from "../../Components/Nav/Nav";
-import { ScrollCrosshair } from "../../Components/Reusable/ScrollCrosshair";
 
 export function HomePage({ isReady }: { isReady: boolean }) {
   const lenisRef = useRef<Lenis | null>(null);
@@ -63,7 +62,6 @@ export function HomePage({ isReady }: { isReady: boolean }) {
 
   return (
     <>
-      <ScrollCrosshair />
       <main className="bg-black flex flex-1 flex-col">
         <Nav />
         <Hero isReady={isReady} />

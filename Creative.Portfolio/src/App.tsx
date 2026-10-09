@@ -5,6 +5,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { LoadingScreen } from "./Components/Loader/LoadingScreen";
 import { HomePage } from "./Pages/Home/Index";
 import { ProjectIndex } from "./Pages/Projects/Index";
+import { ScrollCrosshair } from "./Components/Reusable/ScrollCrosshair";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -47,6 +48,8 @@ function App() {
   return (
     <>
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+
+      {location.pathname === "/" && <ScrollCrosshair />}
       <div ref={pageRef}>
         <Routes>
           <Route path="/" element={<HomePage isReady={!isLoading} />} />
